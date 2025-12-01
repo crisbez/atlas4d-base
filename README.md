@@ -134,6 +134,8 @@ Atlas4D Base ships with the core 4D engine and generic AI services. On top of th
 - [Architecture Overview](docs/architecture/ARCHITECTURE.md)
 - [Database Schema](docs/architecture/SCHEMA.md)
 - [API Reference](docs/api/API_REFERENCE.md)
+- [NLQ Usage Guide](docs/api/NLQ_USAGE.md)
+- [STSQL Overview](docs/api/STSQL_OVERVIEW.md)
 
 ## 🔧 Configuration
 ```yaml
@@ -194,3 +196,18 @@ Atlas4D stands on the shoulders of giants:
 **Our vision:** Atlas4D aims to become the "Linux of 4D spatiotemporal data platforms" - a stable, open foundation for location-aware, time-sensitive AI applications.
 
 ⭐ Star this repo if you find it useful!
+
+### 💬 Ask Your Data in Natural Language
+
+Atlas4D supports natural language queries in Bulgarian and English:
+
+**Bulgarian:**
+- "Какво е времето в Бургас?"
+- "Покажи заплахи около София"
+- "Покажи аномалии от последния час"
+
+**English:**
+- "Show threats near the airport"
+- "What anomalies happened today?"
+
+See [NLQ Usage Guide](docs/api/NLQ_USAGE.md) for full examples.
