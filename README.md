@@ -26,7 +26,7 @@ cd atlas4d-base
 docker compose up -d
 
 # Open the map UI (port may vary, see docs/quickstart/QUICK_START.md)
-# Open in your browser: http://localhost:8080/ui/
+# Open in your browser: http://localhost:8091
 ```
 
 **Time to first map: ~5 minutes**
@@ -211,3 +211,12 @@ Atlas4D supports natural language queries in Bulgarian and English:
 - "What anomalies happened today?"
 
 See [NLQ Usage Guide](docs/api/NLQ_USAGE.md) for full examples.
+
+## 🔗 After the Stack is Up
+
+| Service | URL |
+|---------|-----|
+| **Map UI** | http://localhost:8091 |
+| **API** | http://localhost:8090/api/observations |
+| **Health** | http://localhost:8090/health |
+| **Stats** | http://localhost:8090/api/stats |
