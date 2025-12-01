@@ -15,9 +15,6 @@ cd atlas4d-base
 
 # Copy example environment
 cp .env.example .env
-
-# Edit if needed (defaults work for local dev)
-# nano .env
 ```
 
 ## Step 2: Start Services
@@ -38,32 +35,53 @@ curl http://localhost:8080/health
 
 Expected response:
 ```json
-{"status": "healthy", "services": {...}}
+{"status": "healthy"}
 ```
 
-## Step 4: Open the UI
-
-Open your browser to: **http://localhost:8080/ui/**
-
-You should see:
-- Interactive map centered on Bulgaria
-- Sample trajectory data
-- Anomaly markers (if demo data loaded)
-
-## Step 5: Load Demo Data (Optional)
+## Step 4: Load Demo Data (Optional)
 ```bash
-# Load sample observations and trajectories
-docker compose exec postgres psql -U atlas4d_app -d atlas4d -f /docker-entrypoint-initdb.d/demo_data.sql
+# Load Burgas city demo scenario (500 observations, 30 anomalies)
+docker compose exec postgres psql -U atlas4d_app -d atlas4d -f /docker-entrypoint-initdb.d/seed/demo_burgas.sql
 ```
+
+## Step 5: Open the UI
+
+Open your browser:
+
+| Service | URL |
+|---------|-----|
+| Map UI | http://localhost:8080/ui/ |
+| API Health | http://localhost:8080/health |
+| API Docs | http://localhost:8080/docs |
 
 ## Step 6: Try NLQ (Natural Language Query)
 
-Navigate to **http://localhost:8080/ui/nlq.html**
+Navigate to the NLQ interface and try:
 
-Try queries like:
-- "Покажи аномалии в Бургас" (Show anomalies in Burgas)
-- "What is the weather in Sofia?"
-- "Show threats from last hour"
+**Bulgarian:**
+- "Какво е времето в Бургас?"
+- "Покажи аномалии от последния час"
+- "Покажи заплахи близо до София"
+
+**English:**
+- "Show threats near Burgas"
+- "What anomalies happened today?"
+- "Show observations from last 24 hours"
+
+## Demo Scenario: What You'll See
+
+After loading the demo data, you'll have:
+
+| Data Type | Count | Description |
+|-----------|-------|-------------|
+| Observations | ~500 | Vehicle, sensor, camera readings |
+| Anomalies | ~30 | Speed spikes, unusual routes |
+| Coverage | Burgas area | 42.5°N, 27.5°E ± 10km |
+
+The map will show:
+- 📍 Observation points colored by source type
+- ⚠️ Anomaly markers with severity levels
+- 🗺️ Burgas city area coverage
 
 ## Stopping Atlas4D
 ```bash
@@ -73,27 +91,26 @@ docker compose down
 docker compose down -v
 ```
 
-## Next Steps
-
-- [Architecture Overview](ARCHITECTURE.md)
-- [API Reference](API_REFERENCE.md)
-- [Database Schema](SCHEMA.md)
-
 ## Troubleshooting
 
 ### Services won't start
 ```bash
-# Check logs
 docker compose logs -f
-
 # Ensure ports 8080, 5432, 6379 are free
 ```
 
 ### Database connection errors
 ```bash
-# Wait for postgres to be ready
 docker compose logs postgres | tail -20
 ```
 
 ### Need help?
-Open an issue on GitHub or email cris@digicom.bg
+- Open an issue on [GitHub](https://github.com/crisbez/atlas4d-base/issues)
+- Email: cris@digicom.bg
+
+## Next Steps
+
+- [Architecture Overview](../architecture/ARCHITECTURE.md)
+- [API Reference](../api/API_REFERENCE.md)
+- [Database Schema](../architecture/SCHEMA.md)
+- [NLQ Usage Guide](../api/NLQ_USAGE.md)
