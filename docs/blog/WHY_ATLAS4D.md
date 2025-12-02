@@ -15,7 +15,7 @@ If you've ever built a system that tracks things moving through space and time, 
 
 You end up with 4-5 databases, complex ETL pipelines, and queries that span multiple systems just to answer: *"What anomalies happened near the airport in the last hour?"*
 
-We call this the **4D fragmentation problem** - where the four dimensions (latitude, longitude, altitude, time) are scattered across incompatible systems.
+We call this the **4D fragmentation problem** — where the four dimensions (latitude, longitude, altitude, time) are scattered across incompatible systems.
 
 ---
 
@@ -30,7 +30,7 @@ PostgreSQL 16
 └── JSONB        → Flexible metadata, no schema migrations
 ```
 
-One query language. One connection. One backup strategy.
+**One query language. One connection. One backup strategy.**
 ```sql
 -- Find anomalies near Sofia in the last 6 hours
 SELECT * FROM atlas4d.anomalies a
@@ -49,7 +49,7 @@ No joins across databases. No data synchronization nightmares.
 
 **GIS/Geo Developers** who need time-series and vector search alongside their spatial data, without leaving PostgreSQL.
 
-**Telecom & ISP Teams** monitoring network infrastructure - OLTs, switches, CPE devices - with spatial context and anomaly detection.
+**Telecom & ISP Teams** monitoring network infrastructure — OLTs, switches, CPE devices — with spatial context and anomaly detection.
 
 **Smart City Projects** analyzing mobility patterns, traffic flow, and urban sensors in a unified platform.
 
@@ -70,7 +70,7 @@ Ask your data in plain language:
 "Покажи аномалии от последния час"
 ```
 
-The NLQ engine understands Bulgarian, English, and translates to optimized STSQL queries.
+The NLQ engine understands Bulgarian and English, translating to optimized STSQL queries.
 
 ### 2. Multi-Domain on One Engine
 
@@ -83,7 +83,7 @@ The same Atlas4D core handles:
 | **Airspace** | Radar tracks, ADS-B, drones |
 | **Agriculture** | Weather stations, soil sensors, imagery |
 
-Switch between domains with a dropdown - the underlying 4D engine is identical.
+Switch between domains with a dropdown — the underlying 4D engine is identical.
 
 ### 3. Observability from Day One
 
@@ -94,7 +94,7 @@ Every Atlas4D deployment includes:
 - Structured logging with correlation IDs
 - Health endpoints for every microservice
 
-You don't bolt on monitoring later - it's built in.
+You don't bolt on monitoring later — it's built in.
 
 ### 4. ML-Ready Architecture
 
@@ -121,7 +121,7 @@ docker compose up -d
 - Interactive map with real-time updates
 - Demo scenarios (Mobility + Telecom)
 
-![Atlas4D Base Demo](../quickstart/img/demo_burgas_map.png)
+![Atlas4D Base Demo - Burgas Mobility](https://raw.githubusercontent.com/crisbez/atlas4d-base/main/docs/quickstart/img/demo_burgas_map.png)
 
 ---
 
@@ -132,12 +132,10 @@ Atlas4D Base is the open core. The full Atlas4D platform adds:
 | Module | Capability |
 |--------|------------|
 | **Radar & ADS-B** | Multi-source fusion, track correlation |
-| **Network Guardian** | SNMP monitoring, LSTM predictions, topology mapping |
-| **Vision GPU** | Real-time object detection, tracking |
-| **Threat Forecasting** | ML-based risk scoring, predictive zones |
+| **Network Guardian** | SNMP monitoring, LSTM predictions |
+| **Vision GPU** | Real-time object detection |
+| **Threat Forecasting** | ML-based risk scoring |
 | **Enterprise Auth** | SSO, RBAC, audit logging |
-
-[Contact us](mailto:office@atlas4d.tech) for enterprise inquiries.
 
 ---
 
@@ -145,10 +143,10 @@ Atlas4D Base is the open core. The full Atlas4D platform adds:
 
 We bet on PostgreSQL because:
 
-1. **It's everywhere** - Your team already knows it
-2. **Extensions are powerful** - PostGIS, TimescaleDB, pgvector are production-grade
-3. **One operational model** - Backup, replication, monitoring - all standard
-4. **SQL is universal** - No proprietary query language to learn
+1. **It's everywhere** — Your team already knows it
+2. **Extensions are powerful** — PostGIS, TimescaleDB, pgvector are production-grade
+3. **One operational model** — Backup, replication, monitoring — all standard
+4. **SQL is universal** — No proprietary query language to learn
 
 The "boring technology" choice that lets us focus on the 4D intelligence layer, not database operations.
 
@@ -170,22 +168,33 @@ docker compose exec postgres psql -U atlas4d_app -d atlas4d \
 open http://localhost:8091
 ```
 
-**Time to first map: ~5 minutes**
+**Time to first map: ~5 minutes** ⏱️
 
 ---
 
 ## What's Next?
 
-We're building Atlas4D to be the "Linux of 4D spatiotemporal platforms" - a solid open foundation that organizations can extend for their specific domains.
+We're building Atlas4D to be the **"Linux of 4D spatiotemporal platforms"** — a solid open foundation that organizations extend for their specific domains.
 
-Upcoming:
+**Roadmap:**
+- Kubernetes Helm charts
+- RAG integration for document-aware queries
+- Real-time WebSocket streaming
+- Python SDK for easy integration
 
-- [ ] Kubernetes Helm charts
-- [ ] RAG integration for document-aware queries
-- [ ] Real-time WebSocket streaming
-- [ ] Multi-tenant SaaS deployment
+---
 
-Star us on [GitHub](https://github.com/crisbez/atlas4d-base) and join the journey.
+## 🚀 Get Started
+
+Ready to try Atlas4D? Here's how you can help:
+
+⭐ **[Star the repo](https://github.com/crisbez/atlas4d-base)** — helps others discover Atlas4D
+
+⬇️ **[Clone and run](https://github.com/crisbez/atlas4d-base#-quick-start)** — 5 minutes to first map
+
+🐛 **[Open an issue](https://github.com/crisbez/atlas4d-base/issues)** — your feedback shapes the roadmap
+
+📧 **[Contact us](mailto:office@atlas4d.tech)** — for enterprise inquiries
 
 ---
 
@@ -193,4 +202,4 @@ Star us on [GitHub](https://github.com/crisbez/atlas4d-base) and join the journe
 
 ---
 
-**Tags:** #postgresql #spatiotemporal #timeseries #gis #postgis #timescaledb #pgvector #opensource #4d #realtime #anomalydetection
+**Tags:** `postgresql` `postgis` `timescaledb` `pgvector` `spatiotemporal` `geospatial` `timeseries` `opensource` `anomaly-detection` `nlq`
