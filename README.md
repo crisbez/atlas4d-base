@@ -1,6 +1,6 @@
 # 🌐 Atlas4D Base
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?logo=postgresql)](https://postgresql.org) [![PostGIS](https://img.shields.io/badge/PostGIS-3.4-green)](https://postgis.net) [![TimescaleDB](https://img.shields.io/badge/TimescaleDB-latest-orange)](https://timescale.com) [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](docker-compose.yml)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/Version-0.3.0-brightgreen)](CHANGELOG.md) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?logo=postgresql)](https://postgresql.org) [![PostGIS](https://img.shields.io/badge/PostGIS-3.4-green)](https://postgis.net) [![TimescaleDB](https://img.shields.io/badge/TimescaleDB-latest-orange)](https://timescale.com) [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](docker-compose.yml)
 
 **Open 4D Spatiotemporal AI Platform built on PostgreSQL**
 
