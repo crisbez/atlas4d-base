@@ -11,6 +11,7 @@
 - [ ] Clean terminal (clear history, large font)
 - [ ] Browser ready (empty tabs, bookmarks hidden)
 - [ ] Docker running, no other containers
+- [ ] Images pre-pulled: `docker compose pull`
 - [ ] atlas4d-base folder deleted (fresh start)
 
 ---
@@ -152,6 +153,7 @@ From zero to working map in under 5 minutes.
 ━━━━━━━━
 ⭐ GitHub: https://github.com/crisbez/atlas4d-base
 📖 Quick Start: https://github.com/crisbez/atlas4d-base/blob/main/docs/quickstart/QUICK_START.md
+📰 Blog: https://github.com/crisbez/atlas4d-base/blob/main/docs/blog/WHY_ATLAS4D.md
 📰 Blog: "Why We Built Atlas4D"
 📧 Contact: office@atlas4d.tech
 
