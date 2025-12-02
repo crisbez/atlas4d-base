@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: atlas4d
+Version: 0.1.0
+Summary: Python client for Atlas4D API
+Home-page: https://github.com/crisbez/atlas4d-base
+Author: Digicom Ltd
+Author-email: office@atlas4d.tech
+Requires-Python: >=3.8
