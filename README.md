@@ -257,3 +257,11 @@ docker compose exec postgres psql -U atlas4d_app -d atlas4d
 # Rebuild after changes
 docker compose build api-gateway && docker compose up -d api-gateway
 ```
+
+---
+
+## 🗺️ Roadmap
+
+See [ROADMAP.md](docs/ROADMAP.md) for upcoming features and releases.
+
+**Current:** v0.3.0 | **Next:** v0.4.0 (Q1 2026) — Module Ecosystem
