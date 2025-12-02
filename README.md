@@ -4,6 +4,8 @@
 
 **Open 4D Spatiotemporal AI Platform built on PostgreSQL**
 
+> 📰 **Featured:** [Why We Built Atlas4D](docs/blog/WHY_ATLAS4D.md) — The problem with fragmented spatiotemporal data and how we solved it.
+
 Atlas4D Base is the **open-core** of the larger Atlas4D platform. This repo contains a minimal but fully working 4D stack - database, core services, and observability. The full Atlas4D platform adds extra domain modules (radar, drones, telco network analytics, etc.).
 
 ## 👥 Who Is This For?
