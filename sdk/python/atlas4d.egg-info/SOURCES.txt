@@ -1,5 +1,5 @@
 README.md
-setup.py
+pyproject.toml
 atlas4d/__init__.py
 atlas4d/client.py
 atlas4d.egg-info/PKG-INFO

@@ -1,8 +1,124 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: atlas4d
 Version: 0.1.0
-Summary: Python client for Atlas4D API
-Home-page: https://github.com/crisbez/atlas4d-base
-Author: Digicom Ltd
-Author-email: office@atlas4d.tech
+Summary: Python client for Atlas4D - Open 4D Spatiotemporal AI Platform
+Author-email: Digicom Ltd <office@atlas4d.tech>
+Maintainer-email: Cris Bez <office@atlas4d.tech>
+License: Apache-2.0
+Project-URL: Homepage, https://atlas4d.tech
+Project-URL: Documentation, https://github.com/crisbez/atlas4d-base/tree/main/sdk/python
+Project-URL: Repository, https://github.com/crisbez/atlas4d-base
+Project-URL: Issues, https://github.com/crisbez/atlas4d-base/issues
+Project-URL: Changelog, https://github.com/crisbez/atlas4d-base/blob/main/CHANGELOG.md
+Keywords: atlas4d,spatiotemporal,geospatial,postgresql,postgis,timescaledb,pgvector,api-client
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Database
+Classifier: Topic :: Scientific/Engineering :: GIS
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
 Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.25.0
+
+# Atlas4D Python SDK
+
+[![PyPI version](https://badge.fury.io/py/atlas4d.svg)](https://badge.fury.io/py/atlas4d)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+Python client for [Atlas4D](https://atlas4d.tech) - Open 4D Spatiotemporal AI Platform.
+
+## Installation
+```bash
+pip install atlas4d
+```
+
+## Quick Start
+```python
+from atlas4d import Client
+
+# Connect to Atlas4D
+client = Client(host="localhost", port=8090)
+
+# Check health
+print(client.health())
+
+# Get statistics
+print(client.stats())
+
+# Query observations
+observations = client.observations.list(
+    lat=42.5,
+    lon=27.46,
+    radius_km=10,
+    hours=24,
+    limit=100
+)
+
+# Query anomalies
+anomalies = client.anomalies.list(hours=24)
+```
+
+## Context Manager
+```python
+from atlas4d import Client
+
+with Client() as client:
+    print(client.stats())
+# Session automatically closed
+```
+
+## Environment Variables
+
+Configure connection via environment:
+```bash
+export ATLAS4D_HOST=192.168.1.100
+export ATLAS4D_PORT=8090
+```
+```python
+from atlas4d import Client
+
+# Uses ATLAS4D_HOST and ATLAS4D_PORT from environment
+client = Client()
+```
+
+## API Reference
+
+### Client
+
+| Method | Description |
+|--------|-------------|
+| `health()` | Check API health status |
+| `stats()` | Get platform statistics |
+| `close()` | Close the session |
+
+### client.observations
+
+| Method | Description |
+|--------|-------------|
+| `list(...)` | Query observations with filters |
+| `geojson(...)` | Get observations as GeoJSON |
+
+### client.anomalies
+
+| Method | Description |
+|--------|-------------|
+| `list(...)` | Query anomalies with filters |
+
+## Links
+
+- **Homepage:** https://atlas4d.tech
+- **GitHub:** https://github.com/crisbez/atlas4d-base
+- **Documentation:** https://github.com/crisbez/atlas4d-base/tree/main/sdk/python
+- **Issues:** https://github.com/crisbez/atlas4d-base/issues
+
+## License
+
+Apache 2.0 - see [LICENSE](https://github.com/crisbez/atlas4d-base/blob/main/LICENSE)

@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atlas4d"
+version = "0.1.0"
+description = "Python client for Atlas4D - Open 4D Spatiotemporal AI Platform"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Digicom Ltd", email = "office@atlas4d.tech"}
+]
+maintainers = [
+    {name = "Cris Bez", email = "office@atlas4d.tech"}
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Database",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = [
+    "atlas4d",
+    "spatiotemporal",
+    "geospatial",
+    "postgresql",
+    "postgis",
+    "timescaledb",
+    "pgvector",
+    "api-client",
+]
+dependencies = [
+    "requests>=2.25.0",
+]
+
+[project.urls]
+Homepage = "https://atlas4d.tech"
+Documentation = "https://github.com/crisbez/atlas4d-base/tree/main/sdk/python"
+Repository = "https://github.com/crisbez/atlas4d-base"
+Issues = "https://github.com/crisbez/atlas4d-base/issues"
+Changelog = "https://github.com/crisbez/atlas4d-base/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["atlas4d*"]
