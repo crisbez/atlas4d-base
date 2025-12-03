@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas4D - Docs Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+        #header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #header h1 { font-size: 1.5rem; }
+        #header a { color: white; text-decoration: none; opacity: 0.8; }
+        #header a:hover { opacity: 1; }
+        
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .intro h2 { color: #333; margin-bottom: 0.5rem; }
+        .intro p { color: #666; }
+        
+        .search-box {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        #question {
+            flex: 1;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        #question:focus {
+            border-color: #667eea;
+        }
+        
+        #askBtn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        #askBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        #askBtn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .examples {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .examples span {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            margin: 0.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .examples span:hover {
+            background: #e0e0e0;
+        }
+        
+        .result {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            display: none;
+        }
+        .result.visible { display: block; }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        .loading .spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #f0f0f0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .answer {
+            line-height: 1.7;
+            color: #333;
+        }
+        .answer p { margin-bottom: 1rem; }
+        .answer code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .answer pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .sources {
+            margin-top: 1.5rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+        .sources-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .sources-header:hover { color: #333; }
+        .sources-header .arrow {
+            margin-right: 0.5rem;
+            transition: transform 0.2s;
+        }
+        .sources-header.expanded .arrow {
+            transform: rotate(90deg);
+        }
+        .sources-list {
+            display: none;
+            margin-top: 0.5rem;
+        }
+        .sources-list.visible { display: block; }
+        .source-item {
+            background: #f9f9f9;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .source-item .doc-id {
+            font-weight: 600;
+            color: #667eea;
+        }
+        .source-item .section {
+            color: #666;
+        }
+        .source-item .similarity {
+            float: right;
+            background: #667eea;
+            color: white;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .lang-toggle button {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .lang-toggle button.active {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>📚 Atlas4D Docs Assistant</h1>
+        <a href="index.html">← Back to Map</a>
+    </div>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>Ask anything about Atlas4D</h2>
+            <p>Get instant answers from our documentation</p>
+        </div>
+        
+        <div class="lang-toggle">
+            <button id="langEn" class="active" onclick="setLang('en')">English</button>
+            <button id="langBg" onclick="setLang('bg')">Български</button>
+        </div>
+        
+        <div class="search-box">
+            <div class="input-group">
+                <input type="text" id="question" placeholder="How do I create a new module?" 
+                       onkeypress="if(event.key==='Enter') askQuestion()">
+                <button id="askBtn" onclick="askQuestion()">Ask Atlas4D</button>
+            </div>
+            <div class="examples">
+                Try: 
+                <span onclick="fillQuestion('How do I create a new module?')">Create a module</span>
+                <span onclick="fillQuestion('What is Atlas4D Core?')">What is Core?</span>
+                <span onclick="fillQuestion('How to deploy with Docker?')">Docker deploy</span>
+                <span onclick="fillQuestion('Какво е NLQ?')">NLQ (BG)</span>
+            </div>
+        </div>
+        
+        <div class="result" id="result">
+            <!-- Dynamic content here -->
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        const API_BASE = window.location.hostname === 'localhost' 
+            ? 'http://localhost:8001' 
+            : 'http://' + window.location.hostname.replace(':8091', '') + ':8001';
+        
+        function setLang(lang) {
+            currentLang = lang;
+            document.getElementById('langEn').classList.toggle('active', lang === 'en');
+            document.getElementById('langBg').classList.toggle('active', lang === 'bg');
+            
+            // Update placeholder
+            const placeholder = lang === 'en' 
+                ? 'How do I create a new module?' 
+                : 'Как да създам нов модул?';
+            document.getElementById('question').placeholder = placeholder;
+        }
+        
+        function fillQuestion(q) {
+            document.getElementById('question').value = q;
+            document.getElementById('question').focus();
+        }
+        
+        async function askQuestion() {
+            const question = document.getElementById('question').value.trim();
+            if (!question) return;
+            
+            const resultDiv = document.getElementById('result');
+            const askBtn = document.getElementById('askBtn');
+            
+            // Show loading
+            resultDiv.className = 'result visible';
+            resultDiv.innerHTML = `
+                <div class="loading">
+                    <span class="spinner"></span>
+                    ${currentLang === 'en' ? 'Thinking...' : 'Мисля...'}
+                </div>
+            `;
+            askBtn.disabled = true;
+            
+            try {
+                const response = await fetch(`${API_BASE}/rag`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        q: question,
+                        top_k: 3,
+                        lang: currentLang
+                    })
+                });
+                
+                if (!response.ok) throw new Error('Service unavailable');
+                
+                const data = await response.json();
+                displayResult(data);
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        ${currentLang === 'en' 
+                            ? '⚠️ Service temporarily unavailable. Please try again.' 
+                            : '⚠️ Услугата временно не е достъпна. Моля, опитайте отново.'}
+                    </div>
+                `;
+            } finally {
+                askBtn.disabled = false;
+            }
+        }
+        
+        function displayResult(data) {
+            const resultDiv = document.getElementById('result');
+            
+            // Format answer (basic markdown-like)
+            let answer = data.answer
+                .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre>$2</pre>')
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            answer = '<p>' + answer + '</p>';
+            
+            // Build sources HTML
+            let sourcesHtml = '';
+            if (data.sources && data.sources.length > 0) {
+                sourcesHtml = `
+                    <div class="sources">
+                        <div class="sources-header" onclick="toggleSources(this)">
+                            <span class="arrow">▶</span>
+                            ${currentLang === 'en' ? 'Sources' : 'Източници'} (${data.sources.length})
+                        </div>
+                        <div class="sources-list">
+                            ${data.sources.map(s => `
+                                <div class="source-item">
+                                    <span class="similarity">${(s.similarity * 100).toFixed(0)}%</span>
+                                    <span class="doc-id">${s.doc_id}</span>
+                                    <span class="section">/ ${s.section}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            resultDiv.innerHTML = `
+                <div class="answer">${answer}</div>
+                ${sourcesHtml}
+            `;
+        }
+        
+        function toggleSources(header) {
+            header.classList.toggle('expanded');
+            const list = header.nextElementSibling;
+            list.classList.toggle('visible');
+        }
+    </script>
+</body>
+</html>
