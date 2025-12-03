@@ -39,7 +39,7 @@ cd atlas4d-base
 docker compose up -d
 
 # Open the map UI (port may vary, see docs/quickstart/QUICK_START.md)
-# Open in your browser: http://185.18.56.13:8091
+# Open in your browser: http://localhost:8091
 ```
 
 **Time to first map: ~5 minutes**
@@ -53,10 +53,10 @@ Try Atlas4D without installing:
 
 | Service | URL |
 |---------|-----|
-| **Map UI** | [atlas4d-demo.digicom.bg:8091](http://185.18.56.13:8091) |
-| **API Health** | [/health](http://185.18.56.13:8090/health) |
-| **API Stats** | [/api/stats](http://185.18.56.13:8090/api/stats) |
-| **Observations** | [/api/observations](http://185.18.56.13:8090/api/observations?limit=10) |
+| **Map UI** | [atlas4d-demo.digicom.bg:8091](http://localhost:8091) |
+| **API Health** | [/health](http://localhost:8090/health) |
+| **API Stats** | [/api/stats](http://localhost:8090/api/stats) |
+| **Observations** | [/api/observations](http://localhost:8090/api/observations?limit=10) |
 
 > 💡 Demo resets daily with fresh Burgas mobility data.
 
@@ -259,10 +259,10 @@ See [NLQ Usage Guide](docs/api/NLQ_USAGE.md) for full examples.
 
 | Service | URL |
 |---------|-----|
-| **Map UI** | http://185.18.56.13:8091 |
-| **API** | http://185.18.56.13:8090/api/observations |
-| **Health** | http://185.18.56.13:8090/health |
-| **Stats** | http://185.18.56.13:8090/api/stats |
+| **Map UI** | http://localhost:8091 |
+| **API** | http://localhost:8090/api/observations |
+| **Health** | http://localhost:8090/health |
+| **Stats** | http://localhost:8090/api/stats |
 
 ---
 
