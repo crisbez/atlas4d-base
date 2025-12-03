@@ -1,0 +1,19 @@
+apiVersion: v2
+name: atlas4d-base
+description: Open 4D Spatiotemporal AI Platform - Helm Chart
+type: application
+version: 0.1.0
+appVersion: "0.3.0"
+keywords:
+  - postgresql
+  - postgis
+  - timescaledb
+  - pgvector
+  - spatiotemporal
+  - geospatial
+home: https://atlas4d.tech
+sources:
+  - https://github.com/crisbez/atlas4d-base
+maintainers:
+  - name: Hristo Beyazov
+    email: office@atlas4d.tech
