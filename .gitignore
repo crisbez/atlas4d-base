@@ -27,3 +27,10 @@ logs/
 # Data
 data/
 *.sql.backup
+
+# Python build artifacts
+sdk/python/dist/
+sdk/python/*.egg-info/
+sdk/python/build/
+__pycache__/
+*.pyc

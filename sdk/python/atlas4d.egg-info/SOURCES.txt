@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-atlas4d/__init__.py
-atlas4d/client.py
-atlas4d.egg-info/PKG-INFO
-atlas4d.egg-info/SOURCES.txt
-atlas4d.egg-info/dependency_links.txt
-atlas4d.egg-info/requires.txt
-atlas4d.egg-info/top_level.txt
