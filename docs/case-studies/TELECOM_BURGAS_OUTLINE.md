@@ -214,4 +214,4 @@ For more information about this case study:
 ---
 
 *Draft: December 2025*  
-*For internal use and investor presentations*
+*For sales and partnership discussions**

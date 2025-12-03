@@ -345,9 +345,9 @@ Timeline:
 
 ### Data Classification
 - Track data: CONFIDENTIAL minimum
-- Signature database: SECRET
-- Countermeasure logs: SECRET
-- Operational patterns: SECRET
+- Signature database: CLASSIFIED
+- Countermeasure logs: CLASSIFIED
+- Operational patterns: CLASSIFIED
 
 ### Security Measures
 - Air-gapped option available
