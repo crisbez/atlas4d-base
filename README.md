@@ -209,6 +209,21 @@ This is **Atlas4D Base** - the open-source foundation and reference implementati
 
 
 
+
+## 📊 Case Studies
+
+Atlas4D is designed for multiple industries. Explore our use case outlines:
+
+| Industry | Use Case | Key Features |
+|----------|----------|--------------|
+| 📡 **Telecom** | [Network Monitoring](docs/case-studies/TELECOM_BURGAS_OUTLINE.md) | SNMP, GPON, real-time alerts |
+| 🏙️ **Smart City** | [Municipal IoT Platform](docs/case-studies/SMART_CITY_OUTLINE.md) | Traffic, parking, air quality |
+| 🛡️ **Defense** | [Counter-Drone System](docs/case-studies/DRONE_DEFENSE_OUTLINE.md) | Radar fusion, swarm detection |
+| 🔥 **Emergency** | [Wildfire Monitoring](docs/case-studies/WILDFIRE_MONITORING_OUTLINE.md) | Risk prediction, satellite hotspots |
+| 🌾 **Agriculture** | [Harvest Forecasting](docs/case-studies/AGRICULTURE_WHEAT_OUTLINE.md) | NDVI tracking, yield prediction |
+
+Each case study includes architecture diagrams, NLQ examples (Bulgarian + English), and expected results.
+
 ## 🤝 Contributing
 
 We welcome contributions! See our [Contributing Guide](docs/community/CONTRIBUTOR_PATHS.md).
