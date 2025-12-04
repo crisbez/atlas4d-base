@@ -1,16 +1,17 @@
 # Atlas4D Python SDK
 
-[![PyPI version](https://badge.fury.io/py/atlas4d.svg)](https://badge.fury.io/py/atlas4d)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-Python client for [Atlas4D](https://atlas4d.tech) - Open 4D Spatiotemporal AI Platform.
+Simple Python client for [Atlas4D](https://atlas4d.tech) spatiotemporal platform.
 
 ## Installation
 ```bash
 pip install atlas4d
 ```
 
+**Requires Python 3.9+**
+
 ## Quick Start
+
+### Sync Client
 ```python
 from atlas4d import Client
 
@@ -20,75 +21,105 @@ client = Client(host="localhost", port=8090)
 # Check health
 print(client.health())
 
-# Get statistics
-print(client.stats())
+# Ask documentation questions (RAG)
+answer = client.ask("How do I create a module?")
+print(answer.text)
+print(f"Sources: {len(answer.sources)}")
 
-# Query observations
-observations = client.observations.list(
-    lat=42.5,
-    lon=27.46,
+# Get observations
+obs = client.observations.list(
+    lat=42.5, 
+    lon=27.5, 
     radius_km=10,
-    hours=24,
-    limit=100
+    hours=24
 )
+print(f"Found {len(obs)} observations")
 
-# Query anomalies
+# Get anomalies
 anomalies = client.anomalies.list(hours=24)
 ```
 
-## Context Manager
+### Async Client
 ```python
-from atlas4d import Client
+import asyncio
+from atlas4d import AsyncClient
 
-with Client() as client:
-    print(client.stats())
-# Session automatically closed
+async def main():
+    async with AsyncClient() as client:
+        # Ask documentation questions
+        answer = await client.ask("How do I deploy Atlas4D?")
+        print(answer.text)
+        
+        # Get observations
+        obs = await client.observations.list(limit=100)
+        print(f"Found {len(obs)} observations")
+
+asyncio.run(main())
 ```
 
-## Environment Variables
-
-Configure connection via environment:
-```bash
-export ATLAS4D_HOST=192.168.1.100
-export ATLAS4D_PORT=8090
-```
+## Configuration
 ```python
-from atlas4d import Client
+# Using environment variables
+# ATLAS4D_HOST=myserver.com
+# ATLAS4D_PORT=8090
 
-# Uses ATLAS4D_HOST and ATLAS4D_PORT from environment
-client = Client()
+client = Client()  # Uses env vars
+
+# Or explicit configuration
+client = Client(host="myserver.com", port=8090, timeout=60)
+```
+
+## RAG (Documentation Q&A)
+
+Ask questions about Atlas4D documentation in natural language:
+```python
+# English
+answer = client.ask("What is Atlas4D Core?")
+
+# Bulgarian
+answer = client.ask("Какво е Atlas4D?", lang="bg")
+
+# With more sources
+answer = client.ask("How to deploy?", top_k=5)
+
+# Access sources
+for source in answer.sources:
+    print(f"- {source['doc_id']}: {source['similarity']:.0%}")
 ```
 
 ## API Reference
 
-### Client
+### Client / AsyncClient
 
 | Method | Description |
 |--------|-------------|
-| `health()` | Check API health status |
+| `health()` | Check API health |
 | `stats()` | Get platform statistics |
-| `close()` | Close the session |
+| `ask(question, top_k=3, lang="en")` | Ask documentation questions |
 
-### client.observations
-
-| Method | Description |
-|--------|-------------|
-| `list(...)` | Query observations with filters |
-| `geojson(...)` | Get observations as GeoJSON |
-
-### client.anomalies
+### Observations API
 
 | Method | Description |
 |--------|-------------|
-| `list(...)` | Query anomalies with filters |
+| `list(lat, lon, radius_km, hours, limit)` | List observations |
+| `geojson(limit)` | Get as GeoJSON |
+
+### Anomalies API
+
+| Method | Description |
+|--------|-------------|
+| `list(hours, limit)` | List anomalies |
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ## Links
 
-- **Homepage:** https://atlas4d.tech
-- **GitHub:** https://github.com/crisbez/atlas4d-base
-- **Documentation:** https://github.com/crisbez/atlas4d-base/tree/main/sdk/python
-- **Issues:** https://github.com/crisbez/atlas4d-base/issues
+- [Atlas4D Website](https://atlas4d.tech)
+- [GitHub Repository](https://github.com/crisbez/atlas4d-base)
+- [Documentation](https://github.com/crisbez/atlas4d-base/tree/main/docs)
 
 ## License
 
-Apache 2.0 - see [LICENSE](https://github.com/crisbez/atlas4d-base/blob/main/LICENSE)
+Apache 2.0
