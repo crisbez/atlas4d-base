@@ -6,6 +6,13 @@
 
 > 📰 **Featured:** [Why We Built Atlas4D](https://dev.to/crisbez/why-we-built-atlas4d-the-missing-4d-data-platform-5787) — The problem with fragmented spatiotemporal data and how we solved it.
 
+## 🏆 Recognition
+
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/sacridini/Awesome-Geospatial)
+
+**As seen in:**
+- [Awesome-Geospatial](https://github.com/sacridini/Awesome-Geospatial) - Curated list of geospatial resources
+
 Atlas4D Base is the **open-core** of the larger Atlas4D platform. This repo contains a minimal but fully working 4D stack - database, core services, and observability. The full Atlas4D platform adds extra domain modules (radar, drones, telco network analytics, etc.).
 
 ## 👥 Who Is This For?
