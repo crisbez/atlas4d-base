@@ -8,9 +8,10 @@
 
 ## 🏆 Recognition
 
-[![Awesome](https://awesome.re/badge.svg)](https://github.com/sacridini/Awesome-Geospatial)
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/sacridini/Awesome-Geospatial) [![Awesome PostgreSQL](https://img.shields.io/badge/Awesome-PostgreSQL-336791?logo=postgresql)](https://github.com/dhamaniasad/awesome-postgres)
 
 **As seen in:**
+- [Awesome-PostgreSQL](https://github.com/dhamaniasad/awesome-postgres) - The definitive PostgreSQL resource list (Platforms category) 🆕
 - [Awesome-Geospatial](https://github.com/sacridini/Awesome-Geospatial) - Curated list of geospatial resources
 
 Atlas4D Base is the **open-core** of the larger Atlas4D platform. This repo contains a minimal but fully working 4D stack - database, core services, and observability. The full Atlas4D platform adds extra domain modules (radar, drones, telco network analytics, etc.).
